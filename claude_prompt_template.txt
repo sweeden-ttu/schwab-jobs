@@ -1,0 +1,229 @@
+# ==============================================================================
+# CLAUDE RESUME GENERATION PROMPT TEMPLATE
+# ==============================================================================
+# 
+# This is a template for generating professional LaTeX resumes with Claude.
+# 
+# USAGE OPTIONS:
+#
+# 1. DIRECT PASTE INTO CLAUDE:
+#    - Copy everything below the "---START PROMPT---" marker
+#    - Paste into claude.ai or Claude app
+#    - Replace {{PLACEHOLDERS}} with your actual values
+#
+# 2. COMMAND LINE WITH CLAUDE CLI:
+#    cat this_file.txt | sed 's/{{JOB_TITLE}}/Software Engineer/g' | claude
+#
+# 3. API CALL:
+#    Use the prompt as the "content" field in an Anthropic API request
+#
+# 4. FROM REACT APP:
+#    The React frontend generates this prompt dynamically with job data
+#
+# ==============================================================================
+
+---START PROMPT---
+
+You are an expert resume writer and LaTeX document designer specializing in tech industry resumes. Your task is to create a professional, ATS-optimized resume using LaTeX with a unique, modern design.
+
+## CANDIDATE INFORMATION
+
+**Personal Details:**
+- Full Name: {{CANDIDATE_NAME}}
+- Location: {{CANDIDATE_LOCATION}}
+- Email: {{CANDIDATE_EMAIL}}
+- Phone: {{CANDIDATE_PHONE}}
+- LinkedIn: {{CANDIDATE_LINKEDIN}}
+- GitHub: {{CANDIDATE_GITHUB}}
+
+**Target Position:**
+- Company: {{TARGET_COMPANY}}
+- Job Title: {{JOB_TITLE}}
+- Requisition ID: {{JOB_REQ_ID}}
+- Location: {{JOB_LOCATION}}
+- Salary Range: {{JOB_SALARY}}
+- Required Technologies: {{JOB_TECHNOLOGIES}}
+
+## VERIFIED EMPLOYMENT HISTORY (From W2 Tax Records)
+
+### Fisher Asset Management LLC
+**Senior Software Engineer** | Camas, WA (Remote from Portland, OR) | 2020 - 2021
+- Annual Compensation: $29,083 (2020) → $154,426 (2021)
+- Built financial technology solutions for asset management platform with $10T+ AUM
+- Full-stack development: React, Python, Java, AWS
+- Collaborated with investment teams on data analytics pipelines
+- 401(k) retirement plan participant
+
+### Jabil Inc (formerly Jabil Circuit Inc)
+**Software Engineer** | St. Petersburg, FL → Portland, OR | 2016 - 2020
+- Annual Compensation Growth: $70,209 → $112,948
+- Electronics manufacturing enterprise software development
+- Led process automation initiatives reducing manual work by 40%
+- Database design and optimization (Oracle, PostgreSQL)
+- Mentored junior developers and conducted code reviews
+- Relocated to Portland OR remote position in 2019
+
+### TekSystems, Inc.
+**Contract Software Engineer** | Saint Petersburg, FL | 2014 - 2016
+- Annual Compensation: $85,535 - $93,540
+- Enterprise consulting for Fortune 500 clients
+- Full-stack Java development with Spring Framework
+- Agile/Scrum methodology implementation
+- Multiple successful project deliveries
+
+### ExecuSource LLC
+**Contract Engineer** | Portland, OR | 2023
+- Technical consulting engagements
+- Short-term project delivery
+
+## TECHNICAL SKILLS INVENTORY
+
+**Programming Languages:**
+- Expert: Java, Python, JavaScript/TypeScript, SQL
+- Proficient: C#, Go, Bash, R
+
+**Frameworks & Libraries:**
+- Backend: Spring Boot, Django, FastAPI, Node.js/Express
+- Frontend: React, Angular, Vue.js
+- Data: Pandas, NumPy, Spark, TensorFlow
+
+**Cloud & Infrastructure:**
+- AWS: EC2, S3, Lambda, RDS, EKS
+- Azure: App Service, Functions, AKS
+- GCP: Compute Engine, BigQuery
+- Containerization: Docker, Kubernetes, Helm
+
+**Databases:**
+- Relational: PostgreSQL, MySQL, Oracle, SQL Server
+- NoSQL: MongoDB, Redis, Cassandra, DynamoDB
+- Data Warehouse: Snowflake, Databricks, Redshift
+
+**DevOps & Tools:**
+- CI/CD: Jenkins, GitHub Actions, GitLab CI, Azure DevOps
+- IaC: Terraform, CloudFormation, Ansible
+- Monitoring: Datadog, Splunk, Prometheus, Grafana
+- Version Control: Git, GitHub, Bitbucket
+
+## RESUME DESIGN REQUIREMENTS
+
+### 1. Layout Specifications
+- Use a modern **two-column layout** or **creative sidebar design**
+- DO NOT use standard templates (moderncv, europecv, awesome-cv)
+- Create a **custom design from scratch** using TikZ
+- Maximum **one page** - be concise and impactful
+- Use **clear visual hierarchy** with section headers
+
+### 2. Color Scheme
+- Primary Color: #0070CD (Schwab Blue) - use for headers and accents
+- Secondary Color: #00A3E0 (Light Blue) - use sparingly for highlights
+- Accent Color: #6CBE45 (Green) - use for skills/tags
+- Text: #1a1a1a (near black) for body, #666 for secondary text
+- Background: #ffffff (white) with subtle gray (#f4f6f8) for sidebar
+
+### 3. Typography
+- Use only fonts available in standard TexLive
+- Suggested: Helvetica, Roboto, or Computer Modern
+- Headers: 14-16pt bold
+- Body: 10-11pt regular
+- Name: 24-28pt bold
+
+### 4. ATS Compatibility Requirements
+- All text must be **selectable and searchable** (no text-as-images)
+- Use standard section headings: "Experience", "Skills", "Education"
+- Include **keywords from job description** naturally
+- Avoid columns that confuse ATS parsers (use CSS-style positioning)
+
+### 5. Required Sections
+1. **Header**: Name, contact info with icons (FontAwesome)
+2. **Professional Summary**: 3-4 lines tailored to target job
+3. **Technical Skills**: Grid or tag-cloud format
+4. **Professional Experience**: Reverse chronological
+5. **Education & Certifications**: Brief section at bottom
+
+### 6. Content Guidelines
+- Start bullets with **strong action verbs**
+- Include **quantifiable achievements** where possible
+- **Match keywords** from job posting naturally
+- Keep descriptions **concise but impactful**
+- Tailor content to **{{TARGET_COMPANY}}** culture
+
+## LATEX TECHNICAL REQUIREMENTS
+
+### Required Packages
+```latex
+\usepackage[margin=0.5in]{geometry}
+\usepackage{tikz}
+\usepackage{fontawesome5}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{tabularx}
+```
+
+### Must Compile With
+- **pdflatex** (NOT XeLaTeX or LuaLaTeX)
+- Standard TexLive 2023+ installation
+- No external font files or images
+
+### Code Quality
+- Include comments for customization points
+- Proper escaping for special characters (&, %, $, #, _)
+- Clean, readable LaTeX code
+- Define colors at document start
+
+## OUTPUT INSTRUCTIONS
+
+1. Generate a **complete, compilable LaTeX document**
+2. Wrap code in ```latex code blocks
+3. Include **NO explanatory text** before or after the code
+4. The document should compile successfully with:
+   ```bash
+   pdflatex resume.tex
+   ```
+
+## COMPILATION WORKFLOW
+
+After you generate the LaTeX code, I will:
+1. Save it as `resume.tex`
+2. Run `pdflatex resume.tex`
+3. If errors occur, I'll share them and you'll fix them
+4. Repeat until compilation succeeds
+5. Review the PDF and request adjustments if needed
+
+---
+
+**Generate the complete LaTeX resume code now.**
+
+---END PROMPT---
+
+# ==============================================================================
+# PLACEHOLDER REFERENCE
+# ==============================================================================
+#
+# Replace these placeholders before using:
+#
+# {{CANDIDATE_NAME}}      - Your full name
+# {{CANDIDATE_LOCATION}}  - City, State
+# {{CANDIDATE_EMAIL}}     - Email address
+# {{CANDIDATE_PHONE}}     - Phone number
+# {{CANDIDATE_LINKEDIN}}  - LinkedIn URL
+# {{CANDIDATE_GITHUB}}    - GitHub URL
+# {{TARGET_COMPANY}}      - Company name (e.g., "Charles Schwab")
+# {{JOB_TITLE}}           - Position title (e.g., "Software Engineer Lead")
+# {{JOB_REQ_ID}}          - Job requisition ID (e.g., "2025-116940")
+# {{JOB_LOCATION}}        - Job location (e.g., "Southlake, TX")
+# {{JOB_SALARY}}          - Salary range (e.g., "$150,000 - $200,000")
+# {{JOB_TECHNOLOGIES}}    - Key technologies (e.g., "Java, React, AWS")
+#
+# ==============================================================================
+# DEFAULT VALUES (for Scott D. Weeden from W2 records)
+# ==============================================================================
+#
+# {{CANDIDATE_NAME}}      = Scott D. Weeden
+# {{CANDIDATE_LOCATION}}  = Portland, OR
+# {{CANDIDATE_EMAIL}}     = scott.weeden@email.com
+# {{CANDIDATE_PHONE}}     = (555) 123-4567
+# {{CANDIDATE_LINKEDIN}}  = linkedin.com/in/scottweeden
+# {{CANDIDATE_GITHUB}}    = github.com/scottweeden
+#
+# ==============================================================================
