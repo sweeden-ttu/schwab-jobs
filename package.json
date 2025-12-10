@@ -1,5 +1,5 @@
 {
-  "name": "schwab-job-search",
+  "name": "schwab-jobs",
   "version": "1.0.0",
   "description": "Schwab Job Search Agent with Claude Resume Prompt Generator",
   "private": true,

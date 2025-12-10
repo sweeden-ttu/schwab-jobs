@@ -1,0 +1,78 @@
+You are an expert resume writer and LaTeX document designer. Create a professional, ATS-optimized resume using LaTeX with a unique, modern design.
+
+CANDIDATE PROFILE:
+- Name: Scott D. Weeden
+- Location: Portland, OR
+- Email: scott.weeden@email.com
+- Phone: (555) 123-4567
+- LinkedIn: linkedin.com/in/scottweeden
+
+EMPLOYMENT HISTORY (from verified W2 records):
+
+**Fisher Asset Management LLC** | Camas, WA (Remote from Portland, OR)
+Senior Software Engineer (2020 - 2021)
+- Compensation: $29K - $154K
+- Financial technology solutions development
+- Asset management platform engineering
+
+**Jabil Inc** | St. Petersburg, FL / Portland, OR
+Software Engineer (2016 - 2020)
+- Compensation: $70K - $113K
+- Electronics manufacturing systems
+- Enterprise software development
+- Process automation
+
+**TekSystems, Inc.** | Saint Petersburg, FL
+Contract Software Engineer (2014 - 2016)
+- Compensation: $85K - $94K
+- Enterprise consulting engagements
+- Multiple client projects
+
+**ExecuSource LLC** | Portland, OR
+Contract Engineer (2023)
+- Compensation: Contract
+- Technical consulting
+
+
+TARGET JOB DETAILS:
+- Title: .NET Developer
+- Requisition ID: 2025-115079
+- Location: Southlake, TX
+- Pay Range: USD $36.01 - $73.61 / Hour
+- Key Technologies: aws, azure, oracle, sql
+- Description: Your opportunityAt Schwab, you’re empowered to make an impact on your career. Here, innovative thought meets creative problem solving, helping us “challenge the status quo” and transform the finance industry together.The role will be part of Wealth Asset Management Engineering (WAME) which is part of Schwab Technology Services (STS). WAME is aligned to support both the technology needs of Schwab Asset Management and Wealth Asset Management across the broader Schwab organization. As part of the C...
+- Qualifications: 5+ years experience in a software development role specifically using C# .NETExperience with service-based development technologies, micro-services, RESTful APIs, and event-driven architectureDatabase development using Relational Databases (MS SQL/Oracle) Bachelor’s degree in Computer Science or related field
+
+
+RESUME REQUIREMENTS:
+
+1. **LaTeX Design Requirements:**
+   - Use a unique, professional layout (NOT the standard moderncv or europecv templates)
+   - Implement custom styling with TikZ for visual elements
+   - Use a two-column layout or creative sidebar design
+   - Include subtle color accents (use Schwab blue #0070CD if targeting Schwab)
+   - Ensure ATS-compatibility (parseable text, no images for important info)
+   - One page maximum
+
+2. **Content Optimization:**
+   - Tailor content to emphasize relevant skills for the target job
+   - Use action verbs and quantifiable achievements
+   - Include relevant technologies prominently
+   - Add a skills section matching job requirements
+   - Include a brief professional summary
+
+3. **LaTeX Technical Requirements:**
+   - Use standard packages available in TexLive
+   - Include all necessary package imports
+   - Use proper escaping for special characters
+   - The document must compile with pdflatex without errors
+
+4. **Output Format:**
+   Create a complete, compilable LaTeX document. After generating, I will:
+   - Save the file as `resume.tex`
+   - Run `pdflatex resume.tex` to compile
+   - Fix any compilation errors and re-run until successful
+   - Output the final PDF
+
+Please generate the complete LaTeX source code for this professional resume now.
+

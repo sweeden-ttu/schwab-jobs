@@ -14,7 +14,7 @@ A complete system for searching Schwab software engineering jobs and generating 
 ## 📁 Project Structure
 
 ```
-schwab_job_system/
+schwab-jobs/
 ├── crawler.py              # Python backend (Flask API + SQLite)
 ├── requirements.txt        # Python dependencies
 ├── generate_resume.sh      # CLI script for resume generation
@@ -38,7 +38,8 @@ schwab_job_system/
 
 ```bash
 # 1. Navigate to project directory
-cd schwab_job_system
+cd schwab-jobs
+
 
 # 2. Create virtual environment
 python -m venv venv
