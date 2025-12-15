@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
+import CDLTimedQuiz from './texas-cdl-timed-quiz_1';
 
 // =============================================================================
 // CONFIGURATION
@@ -311,6 +312,7 @@ const styles = {
 // =============================================================================
 function App() {
   // State
+  const [view, setView] = useState('jobs'); // 'jobs' or 'quiz'
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [query, setQuery] = useState('');
@@ -540,13 +542,47 @@ Generate the complete LaTeX source code now.`;
     <div style={styles.container}>
       {/* Header */}
       <header style={styles.header}>
-        <h1 style={styles.headerTitle}>🔍 Schwab Job Search Agent</h1>
-        <p style={styles.headerSubtitle}>
-          Search {jobs.length} indexed software engineering positions • Generate AI-powered resume prompts
-        </p>
+        <div style={styles.flexBetween}>
+          <div>
+            <h1 style={styles.headerTitle}>🔍 Schwab Job Search Agent</h1>
+            <p style={styles.headerSubtitle}>
+              Search {jobs.length} indexed software engineering positions • Generate AI-powered resume prompts
+            </p>
+          </div>
+          <div style={{ display: 'flex', gap: '10px' }}>
+            <button
+              style={{
+                ...styles.button,
+                ...(view === 'jobs' ? styles.buttonPrimary : styles.buttonSecondary),
+                border: view === 'jobs' ? 'none' : '1px solid rgba(255,255,255,0.3)',
+                backgroundColor: view === 'jobs' ? COLORS.white : 'transparent',
+                color: view === 'jobs' ? COLORS.primary : COLORS.white
+              }}
+              onClick={() => setView('jobs')}
+            >
+              Job Search
+            </button>
+            <button
+              style={{
+                ...styles.button,
+                ...(view === 'quiz' ? styles.buttonPrimary : styles.buttonSecondary),
+                border: view === 'quiz' ? 'none' : '1px solid rgba(255,255,255,0.3)',
+                backgroundColor: view === 'quiz' ? COLORS.white : 'transparent',
+                color: view === 'quiz' ? COLORS.primary : COLORS.white
+              }}
+              onClick={() => setView('quiz')}
+            >
+              CDL Practice Quiz
+            </button>
+          </div>
+        </div>
       </header>
 
-      <main style={styles.mainContent}>
+      <main style={view === 'quiz' ? { ...styles.mainContent, padding: 0, maxWidth: '100%' } : styles.mainContent}>
+        {view === 'quiz' ? (
+          <CDLTimedQuiz />
+        ) : (
+          <>
         {/* Search Section */}
         <section style={styles.searchSection}>
           <div style={styles.searchRow}>
@@ -682,6 +718,8 @@ Generate the complete LaTeX source code now.`;
           <div style={styles.jobGrid}>
             {jobs.map(renderJobCard)}
           </div>
+        )}
+          </>
         )}
       </main>
 
