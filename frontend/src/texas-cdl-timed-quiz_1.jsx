@@ -944,12 +944,13 @@ const questionBank = {
   ]
 };
 
+// All tests are untimed; timeLimit is null for each
 const testConfig = {
   "Texas Commercial Rules": { timeLimit: null, questionCount: 22, passingScore: 80 },
-  "General Knowledge": { timeLimit: 30 * 60, questionCount: 50, passingScore: 80 },
-  "Air Brakes": { timeLimit: 15 * 60, questionCount: 25, passingScore: 80 },
-  "Passenger": { timeLimit: 15 * 60, questionCount: 20, passingScore: 80 },
-  "School Bus": { timeLimit: 15 * 60, questionCount: 20, passingScore: 80 }
+  "General Knowledge": { timeLimit: null, questionCount: 50, passingScore: 80 },
+  "Air Brakes": { timeLimit: null, questionCount: 25, passingScore: 80 },
+  "Passenger": { timeLimit: null, questionCount: 20, passingScore: 80 },
+  "School Bus": { timeLimit: null, questionCount: 20, passingScore: 80 }
 };
 
 const shuffleArray = (array) => {
@@ -1000,18 +1001,7 @@ const CDLTimedQuiz = () => {
   }, [answers, questions, currentTest]);
 
   useEffect(() => {
-    if (timeRemaining > 0 && currentTest && !testComplete) {
-      const timer = setInterval(() => {
-        setTimeRemaining((prev) => {
-          if (prev <= 1) {
-            finishTest();
-            return 0;
-          }
-          return prev - 1;
-        });
-      }, 1000);
-      return () => clearInterval(timer);
-    }
+    // Untimed tests: no countdown needed
   }, [timeRemaining, currentTest, testComplete, finishTest]);
 
   const formatTime = (seconds) => {
@@ -1021,6 +1011,8 @@ const CDLTimedQuiz = () => {
   };
 
   const handleAnswerSelect = (index) => {
+    // Lock in the first answer for each question so incorrect answers are recorded immediately
+    if (answers[currentQuestion] !== undefined) return;
     setSelectedAnswer(index);
     setAnswers((prev) => ({ ...prev, [currentQuestion]: index }));
   };
@@ -1259,8 +1251,6 @@ const CDLTimedQuiz = () => {
   // Active Test Screen
   const currentQ = questions[currentQuestion];
   const answeredCount = Object.keys(answers).length;
-  const timeWarning = timeRemaining < 120 && !!testConfig[currentTest].timeLimit;
-  const timeCritical = timeRemaining < 60 && !!testConfig[currentTest].timeLimit;
 
   const testColors = {
     "Texas Commercial Rules": { accent: "cyan", gradient: "from-cyan-500 to-sky-500" },
@@ -1280,19 +1270,9 @@ const CDLTimedQuiz = () => {
             <p className="text-slate-400 text-sm">Question {currentQuestion + 1} of {questions.length}</p>
           </div>
           
-          {testConfig[currentTest].timeLimit ? (
-            <div className={`px-4 py-2 rounded-xl font-mono text-xl font-bold ${
-              timeCritical ? 'bg-rose-900/50 text-rose-400 animate-pulse' :
-              timeWarning ? 'bg-amber-900/50 text-amber-400' :
-              'bg-slate-800 text-white'
-            }`}>
-              ⏱ {formatTime(timeRemaining)}
-            </div>
-          ) : (
-            <div className="px-4 py-2 rounded-xl font-mono text-sm font-semibold bg-slate-800 text-slate-300">
-              Untimed Practice
-            </div>
-          )}
+          <div className="px-4 py-2 rounded-xl font-mono text-sm font-semibold bg-slate-800 text-slate-300">
+            Untimed Practice
+          </div>
         </div>
 
         {/* Progress */}
