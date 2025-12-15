@@ -1352,6 +1352,26 @@ const CDLTimedQuiz = () => {
               </button>
             ))}
           </div>
+
+          {selectedAnswer !== null && (
+            <div className="mt-5 p-4 rounded-xl bg-slate-900/60 border border-slate-600">
+              <p className="font-semibold text-sm mb-2">
+                {selectedAnswer === currentQ.correct ? (
+                  <span className="text-emerald-400">Correct ✓</span>
+                ) : (
+                  <span className="text-rose-400">
+                    Incorrect ✗&nbsp;
+                    <span className="text-slate-300">
+                      (Correct answer: {String.fromCharCode(65 + currentQ.correct)}. {currentQ.options[currentQ.correct]})
+                    </span>
+                  </span>
+                )}
+              </p>
+              <p className="text-slate-300 text-sm">
+                <strong className="text-slate-200">Explanation:</strong> {currentQ.explanation}
+              </p>
+            </div>
+          )}
         </div>
 
         {/* Navigation */}
